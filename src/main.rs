@@ -1,13 +1,13 @@
-mod to_do;
 mod state;
-use std::env;
-use state::{write_to_file, read_file};
+mod to_do;
 use serde_json::value::Value;
-use serde_json::{Map, json};
+use serde_json::{json, Map};
+use state::{read_file, write_to_file};
+use std::env;
 
+use to_do::structs::traits::create::Create;
 use to_do::to_do_factory;
 use to_do::ItemTypes;
-use to_do::structs::traits::create::Create;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
@@ -19,9 +19,6 @@ fn main() {
 
     state.insert(title.to_string(), json!(status));
     write_to_file("./state.json", &mut state);
-
-
-
 
     let to_do_item: Result<ItemTypes, &'static str> = to_do_factory("pending", "washing");
     match to_do_item.unwrap() {
