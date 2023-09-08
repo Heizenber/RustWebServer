@@ -1,5 +1,6 @@
 use actix_web::web;
 mod create;
+mod get;
 use super::path::Path;
 
 pub fn item_factory(app: &mut web::ServiceConfig) {
@@ -8,6 +9,8 @@ pub fn item_factory(app: &mut web::ServiceConfig) {
     };
     app.route(
         &base_path.define("/create/{title}".to_string()),
-        web::get().to(create::create),
+        web::post().to(create::create),
     );
+    app.route(&base_path.define("/get".to_string()),
+        web::get().to(get::get));
 }
