@@ -1,13 +1,11 @@
 use std::fs;
 
-
 use serde_json::json;
 use serde_json::value::Value;
 use serde_json::Map;
 
 pub fn read_file(file_name: &str) -> Map<String, Value> {
-    let mut data = String::new();
-    data = fs::read_to_string(file_name).unwrap();
+    let data = fs::read_to_string(file_name).unwrap();
     let json: Value = serde_json::from_str(&data).unwrap();
     let state: Map<String, Value> = json.as_object().unwrap().clone();
     state
@@ -23,7 +21,6 @@ mod tests {
     use super::*;
     #[test]
     fn read_afile() {
-        let data = read_file("./info.json");
-        println!("{:?}", data);
+        let state = read_file("./state.json");
     }
 }
