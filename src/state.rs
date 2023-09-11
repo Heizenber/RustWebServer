@@ -21,6 +21,6 @@ mod tests {
     use super::*;
     #[test]
     fn read_afile() {
-        let state = read_file("./state.json");
+        let _state = read_file("./state.json");
     }
 }

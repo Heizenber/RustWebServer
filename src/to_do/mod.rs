@@ -9,6 +9,7 @@ pub enum ItemTypes {
 }
 
 pub fn to_do_factory(item_type: &str, item_title: &str) -> Result<ItemTypes, &'static str> {
+    assert_eq!("pending", item_type);
     if item_type == "pending" {
         let pending_item = Pending::new(item_title);
         Ok(ItemTypes::Pending(pending_item))
