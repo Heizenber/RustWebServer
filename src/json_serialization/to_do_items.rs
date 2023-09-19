@@ -1,13 +1,15 @@
-use serde::Serialize;
-use crate::to_do::ItemTypes;
 use crate::to_do::structs::base::Base;
+use crate::to_do::ItemTypes;
+use actix_web::{HttpRequest, HttpResponse, Responder, body::BoxBody};
+use futures::future::{ready, Ready};
+use serde::Serialize;
 
 #[derive(Serialize)]
 pub struct ToDoItems {
     pub pending_items: Vec<Base>,
     pub done_items: Vec<Base>,
     pub pending_item_count: i8,
-    pub done_item_count: i8
+    pub done_item_count: i8,
 }
 
 impl ToDoItems {
@@ -17,12 +19,8 @@ impl ToDoItems {
 
         for item in input_items {
             match item {
-                ItemTypes::Pending(packed) => pending_array_buffer.push(
-                    packed.super_struct
-                ),
-                ItemTypes::Done(packed) => done_array_buffer.push(
-                    packed.super_struct
-                )
+                ItemTypes::Pending(packed) => pending_array_buffer.push(packed.super_struct),
+                ItemTypes::Done(packed) => done_array_buffer.push(packed.super_struct),
             }
         }
 
@@ -32,7 +30,19 @@ impl ToDoItems {
             pending_items: pending_array_buffer,
             done_items: done_array_buffer,
             pending_item_count: pending_count,
-            done_item_count: done_count
+            done_item_count: done_count,
         }
+    }
+}
+
+
+impl Responder for ToDoItems {
+    type Body = BoxBody;
+
+    fn respond_to(self, req: &HttpRequest) -> HttpResponse<Self::Body> {
+        let body = serde_json::to_string(&self).unwrap();
+        HttpResponse::Ok()
+            .content_type("application/json")
+            .body(body)
     }
 }

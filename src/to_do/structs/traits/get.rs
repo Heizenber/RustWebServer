@@ -1,4 +1,4 @@
-use serde_json::{Map, value::Value};
+use serde_json::{value::Value, Map};
 
 pub trait Get {
     fn get(&self, title: &String, state: &Map<String, Value>) {
