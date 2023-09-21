@@ -1,6 +1,8 @@
 
-use actix_web::web;
 mod items;
+mod content_loader;
+
+use actix_web::web;
 use super::path::Path;
 
 pub fn app_factory(app: &mut web::ServiceConfig) {
