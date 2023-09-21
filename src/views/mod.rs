@@ -1,9 +1,9 @@
 use actix_web::web;
+mod app;
 mod auth;
 mod path;
 mod to_do;
 pub mod token;
-mod app;
 
 pub fn views_factory(app: &mut web::ServiceConfig) {
     auth::auth_factory(app);

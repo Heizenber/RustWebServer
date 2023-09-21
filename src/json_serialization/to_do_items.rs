@@ -1,8 +1,8 @@
 use crate::to_do::structs::base::Base;
 use crate::to_do::ItemTypes;
-use actix_web::{HttpRequest, HttpResponse, Responder, body::BoxBody};
+use actix_web::{body::BoxBody, HttpRequest, HttpResponse, Responder};
 use futures::future::{ready, Ready};
-use serde::{Serialize, Deserialize};
+use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize)]
 pub struct ToDoItems {
@@ -34,7 +34,6 @@ impl ToDoItems {
         }
     }
 }
-
 
 impl Responder for ToDoItems {
     type Body = BoxBody;

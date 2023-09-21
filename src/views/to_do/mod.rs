@@ -2,8 +2,9 @@ use actix_web::web;
 mod create;
 mod get;
 use super::path::Path;
-mod utils;
+mod delete;
 mod edit;
+mod utils;
 
 pub fn item_factory(app: &mut web::ServiceConfig) {
     let base_path = Path {
@@ -19,5 +20,11 @@ pub fn item_factory(app: &mut web::ServiceConfig) {
     );
     app.route(
         &base_path.define("/edit".to_string()),
-        web::put().to(edit::edit));
+        web::put().to(edit::edit),
+    );
+
+    app.route(
+        &base_path.define("/delete".to_string()),
+        web::get().to(delete::delete),
+    );
 }

@@ -2,7 +2,7 @@ use crate::json_serialization::to_do_items::ToDoItems;
 use crate::state::read_file;
 use crate::to_do::to_do_factory;
 use actix_web::Responder;
-use serde::{Serialize, Deserialize};
+use serde::{Deserialize, Serialize};
 
 pub fn return_state() -> impl Responder + Serialize + 'static {
     let state = read_file("./state.json");
