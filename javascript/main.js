@@ -1,11 +1,3 @@
-/**
- * Renders the to do items from the backend into a HTML div.
- *
- * @param items {Array} - list of to do items
- * @param processType {String} - the type of process that the button belonging to the to do item
- * @param elementId {String} - the id of the HTML element that the items will be inserted
- * @param processFunction {editItem | deleteItem} - function that is fired once the button is clicked
- */
 function renderItems(items, processType, elementId, processFunction) {
   let placeholder = "<div>";
   let itemsMeta = [];
@@ -15,14 +7,16 @@ function renderItems(items, processType, elementId, processFunction) {
     let placeholderId = processType + "-" + title.replaceAll(" ", "-");
 
     placeholder +=
-      "<div>" +
+      '<div class="itemContainer">' +
+      "<p>" +
       title +
-      "<button " +
+      "</p>" +
+      '<div class="actionButton" ' +
       'id="' +
-      placeholderId +
+      placeholder +
       '">' +
       processType +
-      "</button>" +
+      "</div>" +
       "</div>";
     itemsMeta.push({ id: placeholderId, title: title });
   }
