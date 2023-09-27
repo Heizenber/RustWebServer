@@ -1,7 +1,6 @@
 .itemContainer {
     background: #034f84;
     margin: 0.3rem;
-    margin-top: 2rem;
 }
 
 .itemContainer:hover {
@@ -16,10 +15,18 @@
     margin-left: 0.4rem;
 }
 
+.inputContainer {
+    background: #034f84;
+    margin: 0.3rem;
+    margin-top: 2rem;
+}
+
 .inputContainer input {
     display: inline-block;
     margin: 0.4rem;
 }
+
+
 
 .actionButton {
     display: inline-block;

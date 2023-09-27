@@ -13,7 +13,7 @@ function renderItems(items, processType, elementId, processFunction) {
       "</p>" +
       '<div class="actionButton" ' +
       'id="' +
-      placeholder +
+      placeholderId +
       '">' +
       processType +
       "</div>" +
